@@ -17,17 +17,28 @@ export const fileTypeConfig: FieldTypeOption = {
     name: 'file',
     keyGenerationPrefix: 'file',
     defaultConfig: {
+        // Il suo stato
         wrappers: [
             //'form-field'
         ],
         props: {
-            required: true,
+            fileNameFieldLabel: 'Nome file',
+            descriptionInputFile: 'Questo sarà il nome del file che verrà salvato nel sistema',
+            placeholderInputFile: '(es. file.txt)',
         },
     },
     properties: [
         createTextProperty({
             name: 'File Name',
-            key: 'props.fileName',
+            key: 'props.fileNameFieldLabel',
+        }),
+        createTextProperty({
+            name: 'Description',
+            key: 'props.descriptionInputFile',
+        }),
+        createTextProperty({
+            name: 'Placeholder',
+            key: 'props.placeholderInputFile',
         }),
     ],
 };

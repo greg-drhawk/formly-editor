@@ -16,7 +16,7 @@ Demo: https://formly-editor.sesan.dev
 
 ## Setup
 
-### Create a config
+### Create a config (see src/app/\<module\>/\<module\>.config.ts for an example)
 
 ```typescript
 import { EditorConfig, createTextProperty } from '@sesan07/ngx-formly-editor';
@@ -45,6 +45,7 @@ const inputTypeConfig: FieldTypeOption = {
 };
 
 // Configure card wrapper (custom wrapper)
+// Da quanto compreso, se il campo ha questo wrapper, allora verranno mostrati l'insieme di campi all'interno del wrapper
 const cardWrapperConfig: FieldWrapperOption = {
     name: 'card',
     properties: [ // The configurable properties to display when a field has this wrapper (optional)
@@ -94,6 +95,47 @@ These helper functions can be used to create properties
 -   `createSelectProperty({...})`
 -   `createTextProperty({...})`
 
+### Create a provider file
+
+You should insert here custom fields that you want to create
+
+```typescript
+import { EnvironmentProviders, importProvidersFrom, makeEnvironmentProviders } from '@angular/core';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+
+import { provideFileType } from 'src/app/drhawk/components/file-type/file-type.provider';
+import { provideCardWrapper } from './components/card-wrapper/card-wrapper.provider';
+import { provideRepeatingSectionType } from './components/repeating-section-type/repeating-section-type.provider';
+import { ipAsyncValidator, ipValidator, ipValidatorMessage } from './drhawk.utils';
+
+export function provideDrhawk(): EnvironmentProviders {
+    return makeEnvironmentProviders([
+        provideCardWrapper(),
+        provideRepeatingSectionType(),
+        provideFileType(),
+        importProvidersFrom([
+            FormlyMaterialModule,
+            FormlyModule.forRoot({
+                validators: [
+                    { name: 'ip', validation: ipValidator },
+                    { name: 'ipAsync', validation: ipAsyncValidator },
+                ],
+                validationMessages: [
+                    { name: 'ip', message: ipValidatorMessage },
+                    { name: 'ipAsync', message: 'This is not a valid IP Address' },
+                    { name: 'required', message: 'This field is required' },
+                ],
+            }),
+        ]),
+    ]);
+}
+```
+
+### Create and adjust route file
+
+This is done via routes (see app.routes.ts for an example)
+
 ### Provide the Editor config
 
 ```typescript
@@ -104,7 +146,7 @@ import { provideEditor, provideEditorConfig, withConfig } from '@sesan07/ngx-for
 
 import { editorConfig1, editorConfig2 } from './editor.config';
 
-// Single route setup
+// Single route setup (see app.config.ts)
 export const appConfig: ApplicationConfig = {
     providers: [
         ...
@@ -118,7 +160,7 @@ export const appConfig: ApplicationConfig = {
     ],
 };
 
-// Multi route setup
+// Multi route setup (see app.routes.ts)
 export const appConfig: ApplicationConfig = {
     providers: [
         ...
@@ -148,6 +190,8 @@ export const appConfig: ApplicationConfig = {
 `EditorModule.forRoot(config?)` and `EditorModule.forChild(config)` are also available for non standalone apps.
 
 ### Use the Editor Component
+
+see src/app/\<module\>/\<module\>.component.ts for an example
 
 ```typescript
 import { Component } from '@angular/core';
