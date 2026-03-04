@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { provideEditorConfig } from '@sesan07/ngx-formly-editor';
 
+import { drHawkEditorConfig } from 'src/app/drhawk/drhawk.config';
 import { bootstrapEditorConfig } from './bootstrap/bootstrap.config';
 import { provideBootstrap } from './bootstrap/bootstrap.provider';
+import { provideDrhawk } from './drhawk/drhawk.provider';
 import { materialEditorConfig } from './material/material.config';
 import { provideMaterial } from './material/material.provider';
 
@@ -16,6 +18,11 @@ export const routes: Routes = [
         path: 'material',
         loadComponent: () => import('./material/material.component').then(m => m.MaterialComponent),
         providers: [provideMaterial(), provideEditorConfig(materialEditorConfig)],
+    },
+    {
+        path: 'drhawk',
+        loadComponent: () => import('./drhawk/drhawk.component').then(m => m.DrHawkComponent),
+        providers: [provideDrhawk(), provideEditorConfig(drHawkEditorConfig)],
     },
     { path: '**', redirectTo: 'material' },
 ];
