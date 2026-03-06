@@ -1,0 +1,90 @@
+[
+  {
+    "key": "udmId",
+    "type": "nginput",
+    "className": "col-6",
+    "props": {
+      "label": "Unità di misura impostata",
+      "placeholder": "",
+      "required": false,
+      "disabled": true,
+      "dependOn": "associaIndicatori",
+      "dependAttr": "udmId",
+      "endpoint": "/udm"
+    },
+    "hideExpression": "model.udmIdTemp"
+  },
+  {
+    "key": "anno",
+    "type": "nginput",
+    "className": "col-12",
+    "props": {
+      "label": "Anno: ",
+      "endpoint": "http://localhost:8084/api/setting/years",
+      "valueProp": "year",
+      "labelProp": "year",
+      "readOnly": true,
+      "fieldClass": "break-all col-12 d-inline",
+      "labelClass": "col-auto d-inline",
+      "placeholder": ""
+    }
+  },
+  {
+    "key": "importo",
+    "type": "nginput",
+    "className": "col-12",
+    "props": {
+      "label": "Importo: ",
+      "readOnly": true,
+      "type": "number",
+      "step": "0.01",
+      "min": "0",
+      "max": "0.10",
+      "labelClass": "col-auto d-inline",
+      "fieldClass": "col-auto d-inline"
+    }
+  },
+  {
+    "key": "indicatoreUsoSingolo",
+    "type": "nginput",
+    "className": "col-6 fix-margin-top",
+    "props": {
+      "label": "",
+      "placeholder": "Indicatore ad uso singolo",
+      "required": false,
+      "disabled": true
+    },
+    "hideExpression": "!model.singleUse"
+  },
+  {
+    "key": "oboTrasversale",
+    "type": "nginput",
+    "className": "col-6 fix-margin-top",
+    "props": {
+      "label": "  ",
+      "placeholder": "Obo trasversale",
+      "required": false,
+      "disabled": true
+    },
+    "hideExpression": "!model.titleOboTrasversale || !model.titleOboTrasversale.includes('(CDG)')"
+  },
+  {
+    "key": "obstId",
+    "type": "nginput",
+    "className": "col-6",
+    "props": {
+      "label": "OBST",
+      "placeholder": "",
+      "valueProp": "obstId",
+      "labelProp": "obstTitle",
+      "required": false,
+      "dependOn": "oboId",
+      "dependAttr": "obstTitle",
+      "skipControls": true
+    },
+    "hideExpression": "!model.flagSezione",
+    "expressions": {
+      "props.disabled": "model.flagSezione"
+    }
+  }
+]
