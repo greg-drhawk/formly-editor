@@ -100,6 +100,16 @@ export class FieldService {
                 key: 'expressionProperties',
                 type: PropertyType.EXPRESSION_PROPERTIES,
             },
+            {
+                name: 'Expressions',
+                key: 'expressions',
+                type: PropertyType.EXPRESSION_PROPERTIES,
+            },
+            {
+                name: 'Hide Expression',
+                key: 'hideExpression',
+                type: PropertyType.TEXT,
+            },
         ];
     }
 
