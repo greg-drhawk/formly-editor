@@ -25,6 +25,20 @@ export const fileTypeConfig: FieldTypeOption = {
             fileNameFieldLabel: 'Nome file',
             descriptionInputFile: 'Questo sarà il nome del file che verrà salvato nel sistema',
             placeholderInputFile: '(es. file.txt)',
+            allowedFileFormats: [
+                {
+                    value: 'image/png',
+                    label: 'PNG',
+                },
+                {
+                    value: 'image/jpeg',
+                    label: 'JPG',
+                },
+                {
+                    value: 'application/pdf',
+                    label: 'PDF',
+                },
+            ],
         },
     },
     properties: [
@@ -39,6 +53,15 @@ export const fileTypeConfig: FieldTypeOption = {
         createTextProperty({
             name: 'Placeholder',
             key: 'props.placeholderInputFile',
+        }),
+        createArrayProperty({
+            name: 'Allowed file formats',
+            key: 'props.allowedFileFormats',
+            canAdd: true,
+            childProperty: createObjectProperty({
+                isRemovable: true,
+                childProperties: [],
+            }),
         }),
     ],
 };

@@ -1,1 +1,67 @@
-<div>Componente creato da Dr. Hawk</div>
+<div class="container">
+    <div class="my-2"><i>Componente creato da Dr. Hawk</i></div>
+    <div>
+        <div class="d-flex align-items-center vertical-align-middle">
+            @if (props.fileNameFieldLabel) {
+                <label
+                    class="pe-2"
+                    for="fileName"
+                    >{{ props.fileNameFieldLabel }}</label
+                >
+            }
+            <input
+                id="fileName"
+                type="text"
+                placeholder="{{ props.placeholderInputFile }}"
+            />
+        </div>
+        @if (props.descriptionInputFile) {
+            <i>{{ props.descriptionInputFile }}</i>
+        }
+    </div>
+    <div>
+        Formati ammessi:
+        <form>
+            <mat-form-field class="example-chip-list">
+                <mat-label>Formati ammessi</mat-label>
+                <mat-chip-grid
+                    #chipGrid
+                    aria-label="Formati ammessi"
+                >
+                    @for (format of props.allowedFileFormats; track $index) {
+                        <mat-chip-row (removed)="remove(format)">
+                            {{ format.value }}
+                            <button
+                                matChipRemove
+                                [attr.aria-label]="'remove ' + format"
+                            >
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    }
+                </mat-chip-grid>
+                <input
+                    name="currentFormat"
+                    placeholder="New Format..."
+                    #formatInput
+                    [(ngModel)]="currentFormat"
+                    [matChipInputFor]="chipGrid"
+                    [matAutocomplete]="auto"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)"
+                />
+                <mat-autocomplete
+                    #auto="matAutocomplete"
+                    (optionSelected)="selected($event); formatInput.value = ''"
+                >
+                    @for (format of filteredFormats(); track format) {
+                        <mat-option [value]="format">{{ format }}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="my-3">
+        <input type="file" />
+    </div>
+</div>
