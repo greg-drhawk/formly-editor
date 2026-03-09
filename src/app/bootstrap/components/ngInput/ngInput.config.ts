@@ -2,7 +2,7 @@ import { createBooleanProperty, createTextProperty, FieldTypeOption } from '@ses
 
 export const ngInputTypeConfig: FieldTypeOption = {
     displayName: 'NgInput',
-    name: 'ng-input',
+    name: 'nginput',
     keyGenerationPrefix: 'ngi',
     defaultConfig: {
         wrappers: ['form-field'],

@@ -8,7 +8,7 @@ export function provideNgInput() {
         FormlyModule.forChild({
             types: [
                 {
-                    name: 'ng-input',
+                    name: 'nginput',
                     component: FormlyFieldNgInput,
                 },
             ],
