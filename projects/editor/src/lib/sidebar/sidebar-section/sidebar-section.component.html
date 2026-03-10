@@ -21,7 +21,8 @@
     </div>
     <div
         class="sidebar-section-content"
-        [style.height.px]="height - headerHeight"
+        [style.height]="'auto'"
+        [style.position]="'absolute'"
     >
         <ng-content select="[mainContent]"></ng-content>
     </div>
