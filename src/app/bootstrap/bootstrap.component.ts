@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { EditorComponent, IDefaultForm } from '@sesan07/ngx-formly-editor';
 
 @Component({
     selector: 'app-bootstrap',
-    template: ` <editor-main [defaultForm]="defaultForm"></editor-main> `,
+    template: ` <button (click)="onClick()">Click</button><editor-main [defaultForm]="defaultForm"></editor-main>`,
     imports: [EditorComponent],
 })
 export class BootstrapComponent {
+    @ViewChild(EditorComponent)
+    public editor!: EditorComponent;
+
     public defaultForm: IDefaultForm = {
         name: 'Default form of mine',
         fields: [
@@ -21,4 +24,8 @@ export class BootstrapComponent {
         ],
         model: {},
     };
+
+    onClick() {
+        console.log(this.editor.formFieldsJSON);
+    }
 }

@@ -84,9 +84,14 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
     get defaultForm(): IDefaultForm {
         return this._defaultForm;
     }
-
     private _defaultForm?: IDefaultForm;
+
+    get formFieldsJSON() {
+        return JSON.stringify(this.getFieldsCleaned(), null, 2);
+    }
+
     public activeForm: IForm;
+
     public activeModel: object;
     public modelProperty: IObjectProperty;
     public fieldOptions: FieldOption[];
@@ -126,7 +131,9 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
         this._store
             .select(selectActiveForm)
             .pipe(takeUntil(this._destroy$))
-            .subscribe(form => (this.activeForm = form));
+            .subscribe(form => {
+                this.activeForm = form;
+            });
         this._store
             .select(selectActiveModel)
             .pipe(takeUntil(this._destroy$))
@@ -185,10 +192,14 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
         this._editorService.duplicateForm(this.activeForm.id);
     }
 
-    onExportForm(): void {
+    getFieldsCleaned() {
         const fieldsClone: IEditorFormlyField[] = structuredClone(this.activeForm.fields);
         fieldsClone.forEach(field => cleanField(field, true, true));
+        return fieldsClone;
+    }
 
+    onExportForm(): void {
+        const fieldsCleaned = this.getFieldsCleaned();
         const dialogRef = this._dialog.open<JSONDialogComponent, ImportJSONData, ImportJSONValue>(JSONDialogComponent, {
             data: {
                 title: 'Export Form',
@@ -199,7 +210,7 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
                 },
                 defaultValue: {
                     name: this.activeForm.name + '.json',
-                    json: JSON.stringify(fieldsClone, null, 2),
+                    json: JSON.stringify(fieldsCleaned, null, 2),
                 },
             },
         });
