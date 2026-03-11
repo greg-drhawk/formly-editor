@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EditorComponent } from '@sesan07/ngx-formly-editor';
+import { EditorComponent, IDefaultForm } from '@sesan07/ngx-formly-editor';
 
 @Component({
     selector: 'app-bootstrap',
@@ -7,7 +7,7 @@ import { EditorComponent } from '@sesan07/ngx-formly-editor';
     imports: [EditorComponent],
 })
 export class BootstrapComponent {
-    public defaultForm = {
+    public defaultForm: IDefaultForm = {
         name: 'Default form of mine',
         fields: [
             {

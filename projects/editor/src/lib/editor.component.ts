@@ -71,7 +71,21 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
     public showSidebars = true;
     public toolbarTabIndex: 0 | 1 = 0;
 
-    @Input() public defaultForm?: IDefaultForm;
+    @Input()
+    set defaultForm(value: IDefaultForm) {
+        this._defaultForm = value;
+        if (value) {
+            // Rimuovi tutti i form esistenti
+            this._removeAllForms();
+            // Aggiungi il nuovo form di default
+            this._editorService.addForm(value.name, value.fields, value.model);
+        }
+    }
+    get defaultForm(): IDefaultForm {
+        return this._defaultForm;
+    }
+
+    private _defaultForm?: IDefaultForm;
     public activeForm: IForm;
     public activeModel: object;
     public modelProperty: IObjectProperty;
@@ -93,7 +107,9 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit(): void {
         // Valuta se usare defaultForm del componente o quello dalla configurazione
-        this.defaultForm = this.defaultForm || this._editorService.config.defaultForm;
+        if (!this._defaultForm) {
+            this.defaultForm = this._editorService.config.defaultForm;
+        }
 
         const { selectForms, selectActiveFormIndex, selectActiveField, selectActiveForm, selectActiveModel } =
             this._editorService.feature;
@@ -250,7 +266,20 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     loadDefaultForm(): void {
-        this._editorService.addForm(this.defaultForm.name, this.defaultForm.fields, this.defaultForm.model);
+        this.defaultForm = this._defaultForm;
+    }
+
+    private _removeAllForms(): void {
+        // Ottieni tutti i form attuali e rimuovili uno per uno
+        this._store
+            .select(this._editorService.feature.selectForms)
+            .pipe(take(1))
+            .subscribe(forms => {
+                // Rimuovi i form partendo dall'ultimo per evitare problemi con gli indici
+                for (let i = forms.length - 1; i >= 0; i--) {
+                    this._editorService.removeForm(i);
+                }
+            });
     }
 
     private _getModelProperty(): IObjectProperty {
