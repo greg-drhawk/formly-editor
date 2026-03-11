@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, debounceTime, takeUntil } from 'rxjs';
+import { Observable, Subject, debounceTime, take, takeUntil } from 'rxjs';
 
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -71,7 +71,7 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
     public showSidebars = true;
     public toolbarTabIndex: 0 | 1 = 0;
 
-    public defaultForm?: IDefaultForm;
+    @Input() public defaultForm?: IDefaultForm;
     public activeForm: IForm;
     public activeModel: object;
     public modelProperty: IObjectProperty;
@@ -92,11 +92,17 @@ export class EditorComponent implements OnInit, AfterViewInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.defaultForm = this._editorService.config.defaultForm;
+        // Valuta se usare defaultForm del componente o quello dalla configurazione
+        this.defaultForm = this.defaultForm || this._editorService.config.defaultForm;
 
         const { selectForms, selectActiveFormIndex, selectActiveField, selectActiveForm, selectActiveModel } =
             this._editorService.feature;
         this.forms$ = this._store.select(selectForms);
+        this.forms$.pipe(take(1)).subscribe(forms => {
+            if (forms.length === 0) {
+                this._editorService.addForm(this.defaultForm.name, this.defaultForm.fields, this.defaultForm.model);
+            }
+        });
         this.activeFormIndex$ = this._store.select(selectActiveFormIndex).pipe(
             debounceTime(0) // allows tab header to render properly when non-zero index on startup
         );

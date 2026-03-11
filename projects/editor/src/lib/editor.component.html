@@ -85,13 +85,14 @@
                                     (mousedown)="onTabLabelMouseDown($event, i)"
                                 >
                                     <span>{{ form.name }}</span>
+                                    <!--  Disabled for our needs
                                     <button
                                         class="close-btn"
                                         mat-icon-button
                                         (click)="onRemoveForm(i)"
                                     >
                                         <mat-icon>close</mat-icon>
-                                    </button>
+                                    </button> -->
                                 </div>
                             </ng-template>
                             <editor-form
@@ -126,7 +127,8 @@
                     }
                 </div>
             }
-            @if (forms.length) {
+            @if (false && forms.length) {
+                <!-- Disabled for our needs, only one form needed -->
                 <div class="editor-mat add-form-btn-wrapper">
                     <button
                         mat-flat-button
@@ -160,7 +162,10 @@
             >
             </editor-edit-field>
         </editor-sidebar-section>
-        <editor-sidebar-section [isCollapsed]="true">
+        <editor-sidebar-section
+            [isCollapsed]="true"
+            [hidden]="true"
+        >
             <div
                 class="section-header-content"
                 headerContent
