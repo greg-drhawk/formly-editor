@@ -1,0 +1,9 @@
+<div class="custom-wrapper">
+    <label *ngIf="props.label">{{ props.label }}</label>
+    <input
+        type="text"
+        [formControl]="formControl"
+        [formlyAttributes]="field"
+        class="form-control"
+    />
+</div>
