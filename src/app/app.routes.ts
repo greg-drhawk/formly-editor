@@ -30,5 +30,5 @@ export const routes: Routes = [
         loadComponent: () => import('./drhawk/drhawk.component').then(m => m.DrHawkComponent),
         providers: [provideDrhawk(), provideEditorConfig(drHawkEditorConfig)],
     },
-    { path: '**', redirectTo: 'material' },
+    { path: '**', redirectTo: 'primeng' },
 ];
