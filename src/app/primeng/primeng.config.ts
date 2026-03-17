@@ -1,5 +1,6 @@
 import { EditorConfig, bootstrapConfig as stylesConfig } from '@sesan07/ngx-formly-editor';
 
+import { ngSelectTypeConfig } from 'src/app/primeng/components/ngSelect/ngSelect.config';
 import {
     checkboxTypeConfig,
     formFieldWrapperConfig,
@@ -31,7 +32,10 @@ export const primengEditorConfig: EditorConfig = {
         },
         checkboxTypeConfig,
         radioTypeConfig,
-        selectTypeConfig,
+        {
+            displayName: 'Select',
+            children: [selectTypeConfig, ngSelectTypeConfig],
+        },
         textareaTypeConfig,
         groupTypeConfig,
     ],
