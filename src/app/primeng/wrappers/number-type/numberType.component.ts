@@ -3,7 +3,6 @@ import { FieldWrapper } from '@ngx-formly/core';
 
 @Component({
     selector: 'app-number-type',
-    imports: [],
     template: `<ng-container #fieldComponent></ng-container>`,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
