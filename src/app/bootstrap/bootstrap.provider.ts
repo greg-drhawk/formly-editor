@@ -2,13 +2,13 @@ import { EnvironmentProviders, importProvidersFrom, makeEnvironmentProviders } f
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 
-import { provideWrappers } from 'src/app/bootstrap/wrappers/wrappers.provider';
+import { provideBootstrapWrappers } from 'src/app/bootstrap/wrappers/wrappers.provider';
 import { provideNgInput } from './components/ngInput/ngInput.provider';
 
 export function provideBootstrap(): EnvironmentProviders {
     return makeEnvironmentProviders([
         provideNgInput(),
-        provideWrappers(),
+        provideBootstrapWrappers(),
 
         importProvidersFrom([
             FormlyBootstrapModule,

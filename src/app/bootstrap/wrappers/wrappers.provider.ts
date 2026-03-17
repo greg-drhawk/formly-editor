@@ -10,47 +10,47 @@ import { NumberTypeComponent } from './number-type/numberType.component';
 import { RequiredComponent } from './required/required.component';
 import { SkipControlsComponent } from './skip-controls/skipControls.component';
 
-export function provideWrappers() {
-  return importProvidersFrom([
-    FormlyModule.forChild({
-      wrappers: [
-        {
-          name: 'endpoint',
-          component: EndpointComponent,
-        },
-        {
-          name: 'depend',
-          component: DependComponent,
-        },
-        {
-          name: 'description',
-          component: DescriptionComponent,
-        },
-        {
-          name: 'number',
-          component: NumberTypeComponent,
-        },
-        {
-          name: 'skip-controls',
-          component: SkipControlsComponent,
-        },
-        {
-          name: 'required',
-          component: RequiredComponent,
-        },
-        {
-          name: 'disabled',
-          component: DisabledComponent,
-        },
-        {
-          name: 'form-field-custom',
-          component: FormFieldCustomComponent,
-        },
-        {
-          name: 'label-field-classes',
-          component: LabelFieldClassesComponent,
-        },
-      ],
-    }),
-  ]);
+export function provideBootstrapWrappers() {
+    return importProvidersFrom([
+        FormlyModule.forChild({
+            wrappers: [
+                {
+                    name: 'endpoint',
+                    component: EndpointComponent,
+                },
+                {
+                    name: 'depend',
+                    component: DependComponent,
+                },
+                {
+                    name: 'description',
+                    component: DescriptionComponent,
+                },
+                {
+                    name: 'number',
+                    component: NumberTypeComponent,
+                },
+                {
+                    name: 'skip-controls',
+                    component: SkipControlsComponent,
+                },
+                {
+                    name: 'required',
+                    component: RequiredComponent,
+                },
+                {
+                    name: 'disabled',
+                    component: DisabledComponent,
+                },
+                {
+                    name: 'form-field-custom',
+                    component: FormFieldCustomComponent,
+                },
+                {
+                    name: 'label-field-classes',
+                    component: LabelFieldClassesComponent,
+                },
+            ],
+        }),
+    ]);
 }

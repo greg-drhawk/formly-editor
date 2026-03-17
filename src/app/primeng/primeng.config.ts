@@ -1,6 +1,17 @@
 import { EditorConfig, bootstrapConfig as stylesConfig } from '@sesan07/ngx-formly-editor';
 
 import { ngSelectTypeConfig } from 'src/app/primeng/components/ngSelect/ngSelect.config';
+import { clearableWrapperConfig } from 'src/app/primeng/wrappers/clearable/clearableWrapperConfig';
+import { extractWrapperConfig } from 'src/app/primeng/wrappers/extract/extractWrapperConfig';
+import { fonteWrapperConfig } from 'src/app/primeng/wrappers/fonte/fonteWrapperConfig';
+import { mappedOptionsWrapperConfig } from 'src/app/primeng/wrappers/mappedOptions/mappedOptionsWrapperConfig';
+import { otherDepWrapperConfig } from 'src/app/primeng/wrappers/otherDep/otherDepWrapperConfig';
+import { readOnlyWrapperConfig } from 'src/app/primeng/wrappers/readOnly/readOnlyWrapperConfig';
+import { removeFromDataTableWrapperConfig } from 'src/app/primeng/wrappers/removeFromDataTable/removeFromDataTableWrapperConfig';
+import { removeSelectedWrapperConfig } from 'src/app/primeng/wrappers/removeSelected/removeSelectedWrapperConfig';
+import { setAllValueWrapperConfig } from 'src/app/primeng/wrappers/setAllValue/setAllValueWrapperConfig';
+import { skipCheckWrapperConfig } from 'src/app/primeng/wrappers/skipCheck/skipCheckWrapperConfig';
+import { subLabelWrapperConfig } from 'src/app/primeng/wrappers/subLabel/subLabelWrapperConfig';
 import {
     checkboxTypeConfig,
     formFieldWrapperConfig,
@@ -48,6 +59,17 @@ export const primengEditorConfig: EditorConfig = {
         disabledWrapperConfig,
         skipControlsWrapperConfig,
         labelFieldClassesWrapperConfig,
+        clearableWrapperConfig,
+        extractWrapperConfig,
+        fonteWrapperConfig,
+        mappedOptionsWrapperConfig,
+        otherDepWrapperConfig,
+        readOnlyWrapperConfig,
+        removeFromDataTableWrapperConfig,
+        removeSelectedWrapperConfig,
+        setAllValueWrapperConfig,
+        skipCheckWrapperConfig,
+        subLabelWrapperConfig,
     ],
     defaultForm,
     stylesConfig,
