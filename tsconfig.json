@@ -1,24 +1,29 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "declaration": false,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "noImplicitOverride": true,
-    "target": "ES2022",
-    "module": "es2020",
-    "lib": ["es2020", "dom"],
-    "paths": {
-      "@sesan07/ngx-formly-editor": ["projects/editor/src/public-api"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "moduleResolution": "bundler",
+        "importHelpers": true,
+        "noImplicitOverride": true,
+        "target": "ES2022",
+        "module": "es2020",
+        "lib": [
+            "es2020",
+            "dom"
+        ],
+        "paths": {
+            "@sesan07/ngx-formly-editor": [
+                "projects/editor/src/public-api"
+            ]
+        },
+        "useDefineForClassFields": false
     },
-    "useDefineForClassFields": false
-  },
-  "angularCompilerOptions": {
-    "strictTemplates": true
-  }
+    "angularCompilerOptions": {
+        "strictTemplates": true
+    }
 }

@@ -35,6 +35,7 @@
     "@ngx-formly/core": "^7.0.0",
     "@ngx-formly/material": "^7.0.0",
     "@ngx-formly/primeng": "^7.0.0",
+    "@primeng/themes": "^21.0.4",
     "@primeuix/themes": "^2.0.3",
     "bootstrap": "^5.3.3",
     "codemirror": "^5.65.16",

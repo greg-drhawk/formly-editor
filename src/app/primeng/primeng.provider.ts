@@ -1,6 +1,6 @@
 import { EnvironmentProviders, importProvidersFrom, makeEnvironmentProviders } from '@angular/core';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
+import { FormlyModule, provideFormlyCore } from '@ngx-formly/core';
+import { withFormlyPrimeNG } from '@ngx-formly/primeng';
 
 import { provideWrappers } from './../bootstrap/wrappers/wrappers.provider';
 import { provideNgInput } from './components/ngInput/ngInput.provider';
@@ -8,15 +8,15 @@ import { provideNgSelect } from './components/ngSelect/ngSelect.provider';
 
 export function providePrimeNG(): EnvironmentProviders {
     return makeEnvironmentProviders([
-        provideNgInput(),
-        provideNgSelect(),
-        provideWrappers(),
+        provideFormlyCore(withFormlyPrimeNG()),
 
         importProvidersFrom([
-            FormlyPrimeNGModule,
             FormlyModule.forRoot({
                 validationMessages: [{ name: 'required', message: 'This field is required' }],
             }),
         ]),
+        provideNgInput(),
+        provideNgSelect(),
+        provideWrappers(),
     ]);
 }
