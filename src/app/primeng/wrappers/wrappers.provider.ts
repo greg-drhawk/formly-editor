@@ -1,8 +1,8 @@
 import { importProvidersFrom } from '@angular/core';
 import { FormlyModule } from '@ngx-formly/core';
-import { DescriptionComponent } from './bootstrap/wrappers/description/description.component';
-import { DisabledComponent } from './bootstrap/wrappers/disabled/disabled.component';
 import { DependComponent } from './depend/depend.component';
+import { DescriptionComponent } from './description/description.component';
+import { DisabledComponent } from './disabled/disabled.component';
 import { EndpointComponent } from './endpoint/endpoint.component';
 import { FormFieldCustomComponent } from './form-field-custom/form-field-custom.component';
 import { LabelFieldClassesComponent } from './label-field-classes/label-field-classes.component';
