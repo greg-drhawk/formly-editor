@@ -20,7 +20,6 @@ import { endpointWrapperConfig } from './wrappers/endpoint/endpointWrapperConfig
 import { formFieldCustomWrapperConfig } from './wrappers/form-field-custom/formFieldCustomWrapperConfig';
 import { labelFieldClassesWrapperConfig } from './wrappers/label-field-classes/labelFieldClassesWrapperConfig';
 import { numberTypeWrapperConfig } from './wrappers/number-type/numberTypeWrapperConfig';
-import { requiredWrapperConfig } from './wrappers/required/requiredWrapperConfig';
 import { skipControlsWrapperConfig } from './wrappers/skip-controls/skipControlsWrapperConfig';
 
 export const primengEditorConfig: EditorConfig = {
@@ -47,7 +46,6 @@ export const primengEditorConfig: EditorConfig = {
         numberTypeWrapperConfig,
         descriptionWrapperConfig,
         disabledWrapperConfig,
-        requiredWrapperConfig,
         skipControlsWrapperConfig,
         labelFieldClassesWrapperConfig,
     ],

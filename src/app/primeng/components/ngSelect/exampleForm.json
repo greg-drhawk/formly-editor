@@ -23,17 +23,17 @@
                 "label": "Servizio"
             }
         ],
-        "clearable": true,
+        "clearable": true, //TO DO
         "required": false,
-        "extract": "structures",
-        "setAllValue": true,
+        "extract": "structures", //TO DO
+        "setAllValue": true, //TO DO
         "disabled": true,
         "dependOn": "cycleId",
         "dependAttr": "id",
-        "removeSelected": "/allegati/CYC",
+        "removeSelected": "/allegati/CYC", //TO DO
         "removeSelectedId": true,
-        "otherDep": [],
-        "mappedOptions": [
+        "otherDep": [], //TO DO
+        "mappedOptions": [ //TO DO
             {
                 "key": "DIPARTIMENTO",
                 "endpoint": "/structures/type/DIPARTIMENTO"
@@ -47,14 +47,14 @@
                 "endpoint": "/structures/type/SERVIZIO"
             }
         ],
-        "fonte": "cms",
-        "removeFromDataTable": true,
-        "skipCheck": true,
-        "readOnly": true,
+        "fonte": "cms", //TO DO
+        "removeFromDataTable": true, //TO DO
+        "skipCheck": true, //TO DO
+        "readOnly": true, //TO DO
         "labelClass": "col-auto d-inline",
         "fieldClass": "break-all col-10 d-inline",
-        "subLabelTitle": "Specificare l’area di interesse tematica",
-        "subLabelClass": "description formly-description"
+        "subLabelTitle": "Specificare l’area di interesse tematica", //TO DO
+        "subLabelClass": "description formly-description" //TO DO
     },
     "expressions": {
         "hide": "!model.roles || model.roles === 2",

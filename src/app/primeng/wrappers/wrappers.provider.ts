@@ -7,7 +7,6 @@ import { EndpointComponent } from './endpoint/endpoint.component';
 import { FormFieldCustomComponent } from './form-field-custom/form-field-custom.component';
 import { LabelFieldClassesComponent } from './label-field-classes/label-field-classes.component';
 import { NumberTypeComponent } from './number-type/numberType.component';
-import { RequiredComponent } from './required/required.component';
 import { SkipControlsComponent } from './skip-controls/skipControls.component';
 
 export function provideWrappers() {
@@ -33,10 +32,6 @@ export function provideWrappers() {
                 {
                     name: 'skip-controls',
                     component: SkipControlsComponent,
-                },
-                {
-                    name: 'required',
-                    component: RequiredComponent,
                 },
                 {
                     name: 'disabled',
