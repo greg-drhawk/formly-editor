@@ -9,7 +9,9 @@ export interface FormlyFieldConfigCache extends FormlyFieldConfig {
     formControl?: AbstractControl & {
         _fields?: FormlyFieldConfigCache[];
         // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-        _childrenErrors?: Record<string, Function>;
+        _childrenErrors?: {
+            [id: string]: () => void;
+        };
     };
     parent?: FormlyFieldConfigCache;
     options?: FormlyFormOptionsCache;
