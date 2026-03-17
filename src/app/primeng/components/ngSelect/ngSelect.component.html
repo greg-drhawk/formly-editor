@@ -1,5 +1,6 @@
 <div class="custom-wrapper">
     <label *ngIf="props.label">{{ props.label }}</label>
+
     <!-- <p-select
         [options]="props.options"
         [(ngModel)]="model"
@@ -9,7 +10,6 @@
     /> -->
     <p-select
         [formControl]="formControl"
-        [formlyAttributes]="field"
-        class="form-control"
+        [options]="options$ | async"
     />
 </div>
