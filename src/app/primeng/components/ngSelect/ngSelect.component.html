@@ -1,13 +1,6 @@
 <div class="custom-wrapper">
     <label *ngIf="props.label">{{ props.label }}</label>
 
-    <!-- <p-select
-        [options]="props.options"
-        [(ngModel)]="model"
-        optionLabel="name"
-        placeholder="Select a City"
-        class="w-full md:w-56"
-    /> -->
     <p-select
         [formControl]="formControl"
         [options]="options$ | async"

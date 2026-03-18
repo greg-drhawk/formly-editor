@@ -1,17 +1,5 @@
 import { EditorConfig, bootstrapConfig as stylesConfig } from '@sesan07/ngx-formly-editor';
 
-import { ngSelectTypeConfig } from 'src/app/primeng/components/ngSelect/ngSelect.config';
-import { clearableWrapperConfig } from 'src/app/primeng/wrappers/clearable/clearableWrapperConfig';
-import { extractWrapperConfig } from 'src/app/primeng/wrappers/extract/extractWrapperConfig';
-import { fonteWrapperConfig } from 'src/app/primeng/wrappers/fonte/fonteWrapperConfig';
-import { mappedOptionsWrapperConfig } from 'src/app/primeng/wrappers/mappedOptions/mappedOptionsWrapperConfig';
-import { otherDepWrapperConfig } from 'src/app/primeng/wrappers/otherDep/otherDepWrapperConfig';
-import { readOnlyWrapperConfig } from 'src/app/primeng/wrappers/readOnly/readOnlyWrapperConfig';
-import { removeFromDataTableWrapperConfig } from 'src/app/primeng/wrappers/removeFromDataTable/removeFromDataTableWrapperConfig';
-import { removeSelectedWrapperConfig } from 'src/app/primeng/wrappers/removeSelected/removeSelectedWrapperConfig';
-import { setAllValueWrapperConfig } from 'src/app/primeng/wrappers/setAllValue/setAllValueWrapperConfig';
-import { skipCheckWrapperConfig } from 'src/app/primeng/wrappers/skipCheck/skipCheckWrapperConfig';
-import { subLabelWrapperConfig } from 'src/app/primeng/wrappers/subLabel/subLabelWrapperConfig';
 import {
     checkboxTypeConfig,
     formFieldWrapperConfig,
@@ -23,15 +11,27 @@ import {
     textareaTypeConfig,
 } from '../material/material.config';
 import { ngInputTypeConfig } from './components/ngInput/ngInput.config';
+import { ngSelectTypeConfig } from './components/ngSelect/ngSelect.config';
 import { defaultForm } from './primeng.form';
+import { clearableWrapperConfig } from './wrappers/clearable/clearableWrapperConfig';
 import { dependWrapperConfig } from './wrappers/depend/dependWrapperConfig';
 import { descriptionWrapperConfig } from './wrappers/description/descriptionWrapperConfig';
 import { disabledWrapperConfig } from './wrappers/disabled/disabledWrapperConfig';
 import { endpointWrapperConfig } from './wrappers/endpoint/endpointWrapperConfig';
+import { extractWrapperConfig } from './wrappers/extract/extractWrapperConfig';
+import { fonteWrapperConfig } from './wrappers/fonte/fonteWrapperConfig';
 import { formFieldCustomWrapperConfig } from './wrappers/form-field-custom/formFieldCustomWrapperConfig';
 import { labelFieldClassesWrapperConfig } from './wrappers/label-field-classes/labelFieldClassesWrapperConfig';
+import { mappedOptionsWrapperConfig } from './wrappers/mappedOptions/mappedOptionsWrapperConfig';
 import { numberTypeWrapperConfig } from './wrappers/number-type/numberTypeWrapperConfig';
+import { otherDepWrapperConfig } from './wrappers/otherDep/otherDepWrapperConfig';
+import { readOnlyWrapperConfig } from './wrappers/readOnly/readOnlyWrapperConfig';
+import { removeFromDataTableWrapperConfig } from './wrappers/removeFromDataTable/removeFromDataTableWrapperConfig';
+import { removeSelectedWrapperConfig } from './wrappers/removeSelected/removeSelectedWrapperConfig';
+import { setAllValueWrapperConfig } from './wrappers/setAllValue/setAllValueWrapperConfig';
 import { skipControlsWrapperConfig } from './wrappers/skip-controls/skipControlsWrapperConfig';
+import { skipCheckWrapperConfig } from './wrappers/skipCheck/skipCheckWrapperConfig';
+import { subLabelWrapperConfig } from './wrappers/subLabel/subLabelWrapperConfig';
 
 export const primengEditorConfig: EditorConfig = {
     id: 'editor-primeng',
