@@ -14,24 +14,12 @@ export const ngSelectTypeConfig: FieldTypeOption = {
         wrappers: ['form-field'],
         props: {
             label: 'Label',
-            placeholder: 'Placeholder',
-            description: 'Description',
             required: true,
-            multiple: true,
-            selectAllOption: 'Select All',
-            options: [
-                { value: 1, label: 'Option 1' },
-                { value: 2, label: 'Option 2' },
-                { value: 3, label: 'Option 3' },
-                { value: 4, label: 'Option 4', disabled: true },
-            ],
+            multiple: false,
+            options: [],
         },
     },
     properties: [
-        createTextProperty({
-            name: 'Select all options label',
-            key: 'props.selectAllOption',
-        }),
         createBooleanProperty({
             name: 'Multiple selections',
             key: 'props.multiple',
