@@ -1,8 +1,5 @@
-@if (field._info) {
-    <div
-        [id]="field._info.fieldId"
-        [class]="this.field.fieldGroupClassName || ''"
-    >
+<div [class]="this.field.fieldGroupClassName || ''">
+    @if (field._info) {
         @for (f of field.fieldGroup; track f._info.fieldId; let index = $index; let first = $first; let last = $last) {
             <editor-formly-field
                 [field]="f"
@@ -12,12 +9,12 @@
             >
             </editor-formly-field>
         }
-    </div>
-} @else {
-    @for (f of field.fieldGroup; track f) {
-        <formly-field
-            [class]="this.field.fieldGroupClassName || ''"
-            [field]="f"
-        ></formly-field>
+    } @else {
+        @for (f of field.fieldGroup; track f) {
+            <formly-field
+                [class]="this.field.fieldGroupClassName || ''"
+                [field]="f"
+            ></formly-field>
+        }
     }
-}
+</div>
