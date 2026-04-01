@@ -95,6 +95,12 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
             'label-field-classes',
             'subLabel',
         ],
+        'html-editor': ['form-field'],
+        ngradio: ['form-field', 'description', 'type', 'extract', 'endpoint'],
+        ngtransfer: ['form-field', 'endpoint', 'extract'],
+        typologic: ['form-field'],
+        file: ['form-field'],
+        'modal-input': ['form-field', 'disabled'],
     };
 
     onAdd(event: MatChipInputEvent): void {
