@@ -10,6 +10,8 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem } from '@angular/material/menu';
 import { BehaviorSubject } from 'rxjs';
 
+import { FieldType } from '@ngx-formly/core';
+import { EditorService } from '../../editor.service';
 import { TreeItemComponent } from '../../tree-item/tree-item.component';
 import { BasePropertyDirective } from '../base-property.directive';
 import { PropertyKeyComponent } from '../property-key/property-key.component';
@@ -53,6 +55,47 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
     protected defaultValue = null;
 
     private readonly _maxFilteredItems = 50;
+
+    constructor(private editorService: EditorService) {
+        super();
+    }
+
+    // Creami un'oggetto dizionario con chiave valore
+    private readonly _fieldType_wrappers: Record<string, string[]> = {
+        // Add common wrappers for all field types
+        common: ['form-field', 'disabled', 'readOnly'],
+        nginput: [
+            'form-field',
+            'disabled',
+            'depend-on',
+            'endpoint',
+            'form-field-custom',
+            'label-field-classes',
+            'readOnly',
+            'number',
+            'skip-controls',
+        ],
+        ngselect: [
+            'form-field',
+            'disabled',
+            'endpoint',
+            'form-field-custom',
+            'clearable',
+            'extract',
+            'setAllValue',
+            'disabled',
+            'depend-on',
+            'removeSelected',
+            'otherDep',
+            'mappedOptions',
+            'fonte',
+            'removeFromDataTable',
+            'skipCheck',
+            'readOnly',
+            'label-field-classes',
+            'subLabel',
+        ],
+    };
 
     onAdd(event: MatChipInputEvent): void {
         const input: HTMLInputElement = event.input;
@@ -119,11 +162,35 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
     }
 
     private _updateFilteredOptions(value?: string): void {
-        const selectable = value
-            ? this.selectableOptions.filter(option => option.toLowerCase().includes(value.toLowerCase()))
-            : this.selectableOptions;
-        const notSelected = selectable.filter(option => !this.selectedOptions$.value.includes(option));
-        this.filteredOptions$.next(notSelected.slice(0, this._maxFilteredItems));
+        let selectable: string[] = this.selectableOptions;
+        // Filter based on field type
+        const fieldType = this.editorService.getActiveField()?.type;
+        let fieldTypeKey: string;
+        if (fieldType instanceof FieldType) {
+            // can be different from string
+            fieldTypeKey = fieldType.id;
+        } else {
+            fieldTypeKey = fieldType as string;
+        }
+
+        // Filtering only chip list of type wrappers, based on selected field type
+        if (this.property.key === 'wrappers' && this._fieldType_wrappers[fieldTypeKey]) {
+            // If the current selected field is included in the map fieldType-Wrappers
+            const wrappers = this._fieldType_wrappers[fieldTypeKey];
+
+            selectable = selectable.filter(
+                option => wrappers.includes(option) && !this.selectedOptions$.value.includes(option)
+            );
+        } else {
+            selectable = selectable.filter(option => !this.selectedOptions$.value.includes(option)); // Removing already selected options
+        }
+
+        // Applying filter by keyword inserted
+        selectable = value
+            ? selectable.filter(option => option.toLowerCase().includes(value.toLowerCase()))
+            : selectable;
+
+        this.filteredOptions$.next(selectable.slice(0, this._maxFilteredItems));
     }
 
     private _updateValue(): void {

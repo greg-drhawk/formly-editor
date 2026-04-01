@@ -38,6 +38,7 @@ export class EditorService {
     constructor(
         @Inject(EDITOR_CONFIG) public config: EditorConfig,
         @Inject(EDITOR_FEATURE) public feature: EditorFeature,
+
         private _fieldService: FieldService,
         private _store: Store
     ) {
@@ -60,6 +61,11 @@ export class EditorService {
                 []
             );
         this._typeOptions = getTypeOptions(this.fieldOptions);
+    }
+
+    // Per ottenere il campo attivo corrente
+    getActiveField(): IEditorFormlyField {
+        return this._activeField;
     }
 
     public addForm(name: string, sourceFields?: FormlyFieldConfig[], model?: object): void {
