@@ -156,7 +156,9 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
         // Insert check for removing options from jsonSchema
         // if wrapper is in list wrapper_fields
         if (this.wrapper_fields[option]) {
-            this._modifyValue(null, [`props`, option]); // OK ma setta null
+            this.wrapper_fields[option].forEach(field => {
+                this._modifyValue(null, [`props`, field]); // OK ma setta null
+            });
         }
     }
 
