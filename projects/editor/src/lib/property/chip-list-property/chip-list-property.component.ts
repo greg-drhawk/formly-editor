@@ -60,14 +60,13 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
         super();
     }
 
-    // Creami un'oggetto dizionario con chiave valore
     private readonly _fieldType_wrappers: Record<string, string[]> = {
         // Add common wrappers for all field types
         common: ['form-field', 'disabled', 'readOnly'],
         nginput: [
             'form-field',
             'disabled',
-            'depend-on',
+            'depend',
             'endpoint',
             'form-field-custom',
             'label-field-classes',
@@ -84,7 +83,7 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
             'extract',
             'setAllValue',
             'disabled',
-            'depend-on',
+            'depend',
             'removeSelected',
             'otherDep',
             'mappedOptions',
@@ -96,11 +95,35 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
             'subLabel',
         ],
         'html-editor': ['form-field'],
-        ngradio: ['form-field', 'description', 'type', 'extract', 'endpoint'],
+        ngradio: ['form-field', 'description', 'extract', 'endpoint'],
         ngtransfer: ['form-field', 'endpoint', 'extract'],
         typologic: ['form-field'],
         file: ['form-field'],
         'modal-input': ['form-field', 'disabled'],
+    };
+
+    private readonly wrapper_fields: Record<string, string[]> = {
+        'form-field': ['label', 'placeholder', 'description', 'required'],
+        'form-field-custom': ['labelProp', 'valueProp'],
+        endpoint: ['endpoint'],
+        depend: ['dependOn', 'dependAttr'],
+        number: ['min', 'max', 'step', 'type'],
+        description: ['description'],
+        'label-field-classes': ['labelClass', 'fieldClass'],
+        clearable: ['clearable'],
+        extract: ['extract', 'extractFrom', 'extractSecondary'],
+        fonte: ['fonte'],
+        mappedOptions: ['mappedOptions'],
+        removeFromDataTable: ['removeFromDataTable'],
+        removeSelected: ['removeSelected', 'removeSelectedId'],
+        setAllValue: ['setAllValue'],
+        'skip-controls': ['skipControls'],
+        subLabel: ['subLabelTitle', 'subLabelClass'],
+        modal: ['parent'],
+        skipCheck: ['skipCheck'],
+        otherDep: ['otherDep'],
+        disabled: ['disabled'],
+        readOnly: ['readOnly'],
     };
 
     onAdd(event: MatChipInputEvent): void {
@@ -128,6 +151,12 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
             newOptions.splice(index, 1);
             this.selectedOptions$.next(newOptions);
             this._updateValue();
+        }
+
+        // Insert check for removing options from jsonSchema
+        // if wrapper is in list wrapper_fields
+        if (this.wrapper_fields[option]) {
+            this._modifyValue(null, [`props`, option]); // OK ma setta null
         }
     }
 
@@ -169,7 +198,8 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
 
     private _updateFilteredOptions(value?: string): void {
         let selectable: string[] = this.selectableOptions;
-        // Filter based on field type
+
+        // Filter based on selected field type
         const fieldType = this.editorService.getActiveField()?.type;
         let fieldTypeKey: string;
         if (fieldType instanceof FieldType) {
@@ -179,7 +209,7 @@ export class ChipListPropertyComponent extends BasePropertyDirective<IChipListPr
             fieldTypeKey = fieldType as string;
         }
 
-        // Filtering only chip list of type wrappers, based on selected field type
+        // Since is a generic component, filtering only chip list of type wrappers, based on selected field type
         if (this.property.key === 'wrappers' && this._fieldType_wrappers[fieldTypeKey]) {
             // If the current selected field is included in the map fieldType-Wrappers
             const wrappers = this._fieldType_wrappers[fieldTypeKey];
